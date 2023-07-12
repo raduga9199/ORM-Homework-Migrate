@@ -1,7 +1,6 @@
 package com.cydeo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,9 +8,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "courses")
-public class Course extends BaseEntity{
+public class Course {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "CATEGORY")
     private String category;
+    @Column(name = "RATING")
     private String rating;
+    @Column(name = "DESCRIPTION")
     private String description;
 }
