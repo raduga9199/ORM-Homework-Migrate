@@ -2,9 +2,11 @@ package com.cydeo.repository;
 
 import com.cydeo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
@@ -14,7 +16,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
     // display all employees with firstName '' and lastName '',
     // also show all employees with an email address not null
 
-    List<Employee> findByFirstNameAndLastNameOOrEmail(String firstName,
+    List<Employee> findByFirstNameAndLastNameOrEmail(String firstName,
                                                       String lastName,
                                                       String email);
 
@@ -41,6 +43,19 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
     // display all employees that do not have emails
     List<Employee> findByEmailIsNull();
+
+    @Query("SELECT e FROM Employee e WHERE e.email = 'sdubber7@t-online.de'")
+    Employee getEmployeeDetail();
+
+    @Query("SELECT e.salary from Employee e where e.email = 'sdubber7@t-online.de'")
+    Integer getEmployeeSalary();
+
+    @Query("SELECT e from Employee e where e.email = ?1")
+    Optional<Employee> getEmployeeDetails(String email);
+
+    @Query("SELECT e from Employee e where e.email = ?1 and e.salary = ?2")
+    Employee getEmployeeDetail(String email, int salary);
+
 
 
 }
