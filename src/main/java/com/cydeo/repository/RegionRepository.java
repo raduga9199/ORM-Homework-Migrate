@@ -13,6 +13,16 @@ public interface RegionRepository extends JpaRepository<Region,Long> {
     //display all regions in Canada without duplicates
     List<Region> findDistinctByCountry(String country);
 
+    //display all regions with country name includes united
+    List<Region> findByCountryContaining(String country);
+
+    //display all regions with country name includes United in order
+    List<Region> findByCountryContainingOrderByCountry(String country);
+
+    //display top 2 regions in Canada
+
+    List<Region> findTop2ByCountry(String country);
+
 
 
 
