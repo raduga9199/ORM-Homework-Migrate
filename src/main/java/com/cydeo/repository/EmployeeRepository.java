@@ -104,4 +104,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
     List<Employee> getEmployeeSalary(@Param("salary") int salary);
 
 
+
+
+
 }
